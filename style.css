@@ -1,9 +1,10 @@
 :root {
-		--background-color: grey;
+		--background-color: #ACA2EA;
 		--mark-color: red;
 		--board-size: 300px;
 		--cell-size: 100px;
 		--cell-content: calc(var(--cell-size) * 0.9);
+		--grid-border-color: #4857CA;
 }
 
 * {
@@ -43,9 +44,23 @@ body {
 
 #message.show {
 	display: flex;
+	flex-direction: column;
+}
+
+#restart {
+	padding: 4px;
+	color: white;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 20%;
+}
+
+#restart:hover {
+	transform: scale(1.1);
+	background-color: rgba(255,255,255,0.1);
 }
 
 .board {
+	padding: 5px;
 	margin: auto;
 	width: var(--board-size);
 	height: var(--board-size);
@@ -57,12 +72,17 @@ body {
 .cell {
 	width: var(--cell-size);
 	height: var(--cell-size);
-	border: 1px solid green;
+	border: 1px solid var(--grid-border-color);
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+
+.cell:hover {
+	border: 3px solid var(--grid-border-color);
+}
+
 
 .cell.x::before,
 .cell.x::after

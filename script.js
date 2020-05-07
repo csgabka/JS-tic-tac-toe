@@ -1,12 +1,12 @@
 	
 	//TODO
-	//losing message
-	//restart button
+	//draw function
 	//styling
 
 
 const cellElements = document.querySelectorAll('.cell');
-const message = document.getElementById('message');
+const text = document.getElementById('text');
+const restart = document.getElementById('restart');
 let whosTurn = false;
 let player = 'x';
 
@@ -25,6 +25,8 @@ const winningCombination = [
 cellElements.forEach(cell => {
 	cell.addEventListener('click', handleClick)}); 
 
+restart.addEventListener('click', restartGame);
+
 function handleClick(e) {
 	const cell = e.target;
 	if (!cell.classList.contains('x') && !cell.classList.contains('circle'))
@@ -33,11 +35,18 @@ function handleClick(e) {
 		drawSign(whosTurn, cell);
 		if (checkWin(whosTurn)) {
 			message.classList.add('show');
-			message.innerHTML = "Congrats!!! " + `${player}` + " is the winner";
-			console.log();
-			console.log(message);
+			text.innerHTML = "Congrats!!! " + `${player}` + " is the winner";
 		}
+	
 	}
+}
+
+function restartGame(e) {
+	cellElements.forEach(cell => {
+		cell.classList.remove('x');
+		cell.classList.remove('circle');
+		message.classList.remove('show');
+	})
 }
 
 function changeTurns(cell) {
@@ -60,3 +69,4 @@ function checkWin(whosTurn) {
 		})
 	})
 }
+
