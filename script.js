@@ -1,6 +1,5 @@
 	
 	//TODO
-	//draw function
 	//styling
 
 
@@ -29,6 +28,7 @@ restart.addEventListener('click', restartGame);
 
 function handleClick(e) {
 	const cell = e.target;
+	
 	if (!cell.classList.contains('x') && !cell.classList.contains('circle'))
 	{
 		changeTurns(cell);
@@ -37,7 +37,10 @@ function handleClick(e) {
 			message.classList.add('show');
 			text.innerHTML = "Congrats!!! " + `${player}` + " is the winner";
 		}
-	
+		else if (checkDraw()) {
+			message.classList.add('show');
+			text.innerHTML = "Draw!!! " 
+		}
 	}
 }
 
@@ -70,3 +73,8 @@ function checkWin(whosTurn) {
 	})
 }
 
+function checkDraw() {
+	return [...cellElements].every(cell => {
+		return cell.classList.contains('circle') || cell.classList.contains('x')
+	})
+}
